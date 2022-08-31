@@ -17,6 +17,7 @@ let inputPrecio = document.getElementById('precio')
 let mostrarProdSolos = document.getElementById('mostrarProdSolos')
 let mostrarTodosProd = document.getElementById('mostrarTodosProd')
 let btnMostrarProd = document.getElementById('btnMostrar')
+let validacion = false 
 
 
 
@@ -31,11 +32,21 @@ btnMostrarProd.addEventListener('click', mostrarTodosLosProd)
 
 inputBebida.focus()
 
+
 function validarDatos() {
     bebida = form.children[1].value;
     precio = form.children[3].value;
     console.log(bebida)
     console.log(precio)
+
+    if(precio == '' || bebida == ''){
+        alert("Error debe completar todos los campos para continuar")
+        inputBebida.focus()
+        validacion = false;
+         
+    } else {
+        validacion = true;
+    }
 
 }
 
@@ -44,18 +55,22 @@ function validarDatos() {
 function agregarProd(e){
     e.preventDefault()
     validarDatos();
-            
+    if(validacion == true){
     let datos = e.target
-            
     compra.push(new Producto(bebida,precio))
+
     datos.children[1].value = "";
     datos.children[3].value = "";
-            
-            
+    
+    bebida = document.getElementById('iprod').bebida; 
+
     mostrarProdSolos.innerHTML = ""
-            
-            mostrarUnProd()
-            inputProd.focus()
+    mostrarUnProd()
+    inputBebida.focus()      
+
+    }
+    
+
 }
 
 const mostrarUnProd = () =>{
@@ -69,7 +84,7 @@ const mostrarUnProd = () =>{
 function mostrarTodosLosProd (e){
     e.preventDefault();
     mostrarTodosProd.innerHTML = '<h3>Todas las bebidas</h3>';
-    for(const datos of listaProd){
+    for(const datos of compra){
         mostrarTodosProd.innerHTML += 
         `<p><strong>Producto: </strong>${datos.bebida}</p>
         <p><strong>Precio: </strong>${datos.precio}</p> `
