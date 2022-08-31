@@ -39,7 +39,7 @@ function validarDatos() {
     console.log(bebida)
     console.log(precio)
 
-    if(precio == '' || bebida == ''){
+    if(bebida == '' || precio == ''){
         alert("Error debe completar todos los campos para continuar")
         inputBebida.focus()
         validacion = false;
@@ -56,19 +56,28 @@ function agregarProd(e){
     e.preventDefault()
     validarDatos();
     if(validacion == true){
-    let datos = e.target
-    compra.push(new Producto(bebida,precio))
+        let confirmar = confirm("Desea agregar el producto?")
+        if(confirmar=true){
+            let datos = e.target
+            compra.push(new Producto(bebida,precio))
 
-    datos.children[1].value = "";
-    datos.children[3].value = "";
+            datos.children[1].value = "";
+            datos.children[3].value = "";
     
-    bebida = document.getElementById('iprod').bebida; 
+           // bebida = document.getElementById('iprod').bebida; 
 
-    mostrarProdSolos.innerHTML = ""
-    mostrarUnProd()
-    inputBebida.focus()      
+            mostrarProdSolos.innerHTML = ""
+            mostrarUnProd()
+            inputBebida.focus()    
 
-    }
+
+        }else{
+            alert("No se agregó el producto")
+        }
+        
+        } else{
+            inputBebida.focus
+        }
     
 
 }
