@@ -23,7 +23,7 @@ let validacion = false
 
 
 let bebida = form.children[1].value;
-let precio = form.children[3].value;
+let precio = form.children[5].value;
 
 
 form.addEventListener('submit', agregarProd)
@@ -35,7 +35,7 @@ inputBebida.focus()
 
 function validarDatos() {
     bebida = form.children[1].value;
-    precio = form.children[3].value;
+    precio = form.children[5].value;
     console.log(bebida)
     console.log(precio)
 
@@ -57,12 +57,12 @@ function agregarProd(e){
     validarDatos();
     if(validacion == true){
         let confirmar = confirm("Desea agregar el producto?")
-        if(confirmar=true){
+        if(confirmar==  true){
             let datos = e.target
             compra.push(new Producto(bebida,precio))
 
             datos.children[1].value = "";
-            datos.children[3].value = "";
+            datos.children[5].value = "";
     
            // bebida = document.getElementById('iprod').bebida; 
 
@@ -91,8 +91,8 @@ const mostrarUnProd = () =>{
 
 
 function mostrarTodosLosProd (e){
-    e.preventDefault();
-    mostrarTodosProd.innerHTML = '<h3>Todas las bebidas</h3>';
+    e.preventDefault(); 
+    mostrarTodosProd.innerHTML = '<h3>Bebidas Acumuladas</h3>';
     for(const datos of compra){
         mostrarTodosProd.innerHTML += 
         `<p><strong>Producto: </strong>${datos.bebida}</p>
