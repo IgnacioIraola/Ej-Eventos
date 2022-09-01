@@ -40,7 +40,7 @@ function validarDatos() {
     console.log(precio)
 
     if(bebida == '' || precio == ''){
-        alert("Error debe completar todos los campos para continuar")
+        alert("Se debe completar todos los campos para continuar")
         inputBebida.focus()
         validacion = false;
          
